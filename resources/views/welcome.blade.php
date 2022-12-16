@@ -21,6 +21,8 @@
         </x-slot:title>
         This is a test
     </x-alert>
+
+    <x-alert2></x-alert2>
 </div>
 </body>
 </html>
