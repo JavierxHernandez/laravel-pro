@@ -1,131 +1,135 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<style>
-    .color-red{
-        color: red;
-    }
-    .color-blue{
-        color: blue;
-    }
-</style>
-<body>
-<h1>listado de posts</h1>
+<x-layout>
+    <x-slot:title>
+        Posts - Index
+    </x-slot:title>
 
-{{--<p>{{ $pruebaIndex }}</p>--}}
-{{--<p>{{ $pruebaComposer }}</p>--}}
-{{--<p>{{ $prueba }}</p>--}}
+    {{--<x-slot:meta>
+        <meta name="description" content="Listado de posts">
+    </x-slot:meta>--}}
 
-{{--@isset($posts)
-    <p>Esta declarado posts.</p>
-@else
-    <p>No esta declarado posts.</p>
-@endisset
+    @push('meta')
+        <meta name="description" content="Listado de posts">
+    @endpush
 
-@empty($categories)
-    <p>Esta vacio categories.</p>
-@else
-    <p>No esta vacio categories</p>
-@endempty--}}
+    <style>
+        .color-red {
+            color: red;
+        }
 
-{{--variables locales--}}
-{{--@env('local')
-    <p>Estamos en local</p>
-@endenv
+        .color-blue {
+            color: blue;
+        }
+    </style>
 
-@env('production')
-    <p>Estamos en production</p>
-@endenv
+    <h1>listado de posts</h1>
 
-@production
-    <p>Estamos en production</p>
-@endproduction--}}
+    {{--<p>{{ $pruebaIndex }}</p>--}}
+    {{--<p>{{ $pruebaComposer }}</p>--}}
+    {{--<p>{{ $prueba }}</p>--}}
 
-{{--Switch--}}
-{{--@switch($valor)
-    @case('a')
-        <p>El valor es A</p>
-    @break
+    {{--@isset($posts)
+        <p>Esta declarado posts.</p>
+    @else
+        <p>No esta declarado posts.</p>
+    @endisset
 
-    @case('e')
-        <p>El valor es E</p>
-    @break
+    @empty($categories)
+        <p>Esta vacio categories.</p>
+    @else
+        <p>No esta vacio categories</p>
+    @endempty--}}
 
-    @case('i')
-        <p>El valor es I</p>
-    @break
+    {{--variables locales--}}
+    {{--@env('local')
+        <p>Estamos en local</p>
+    @endenv
 
-    @case('o')
-        <p>El valor es O</p>
-    @break
+    @env('production')
+        <p>Estamos en production</p>
+    @endenv
 
-    @case('u')
-        <p>El valor es U</p>
-    @break
+    @production
+        <p>Estamos en production</p>
+    @endproduction--}}
 
-    @default
-        <p>El valor no es bocal</p>
-    @break
-@endswitch--}}
+    {{--Switch--}}
+    {{--@switch($valor)
+        @case('a')
+            <p>El valor es A</p>
+        @break
 
-{{--foreach--}}
-{{--@foreach($posts as $post)
-    <ul>
-        <li>
-            {{ $post['title'] }}
-        </li>
-    </ul>
-@endforeach--}}
+        @case('e')
+            <p>El valor es E</p>
+        @break
 
-{{--forelse--}}
-@forelse($posts as $post)
-    <ul>
-        <li @if($loop->first) style="color:green" @endif
-            @class([
-                'color-red' => $loop->iteration %2 == 0,
-                'color-blue' => $loop->iteration %2 != 0
-                ])>
+        @case('i')
+            <p>El valor es I</p>
+        @break
 
-            {{ $post['title']
-                ." - Indice: " . $loop->index
-                ." - Iteracion: " .$loop->iteration
-                ." - Faltan: ". $loop->remaining }}
-        </li>
-    </ul>
-@empty
-    <p>No hay nada en el array</p>
-@endforelse
+        @case('o')
+            <p>El valor es O</p>
+        @break
 
-{{--for--}}
-{{--@for($i = 1; $i <= 10; $i++)
-    <p>Conteo: {{ $i }}</p>
-@endfor--}}
+        @case('u')
+            <p>El valor es U</p>
+        @break
 
-{{--while--}}
-{{--@php
-    $i = 1;
-@endphp
-@while($i <= 10)
-    <p>{{$i}}</p>
+        @default
+            <p>El valor no es bocal</p>
+        @break
+    @endswitch--}}
 
-    @php
-    $i++;
+    {{--foreach--}}
+    {{--@foreach($posts as $post)
+        <ul>
+            <li>
+                {{ $post['title'] }}
+            </li>
+        </ul>
+    @endforeach--}}
+
+    {{--forelse--}}
+    @forelse($posts as $post)
+        <ul>
+            <li @if($loop->first) style="color:green" @endif
+                @class([
+                    'color-red' => $loop->iteration %2 == 0,
+                    'color-blue' => $loop->iteration %2 != 0
+                    ])>
+
+                {{ $post['title']
+                    ." - Indice: " . $loop->index
+                    ." - Iteracion: " .$loop->iteration
+                    ." - Faltan: ". $loop->remaining }}
+            </li>
+        </ul>
+    @empty
+        <p>No hay nada en el array</p>
+    @endforelse
+
+    {{--for--}}
+    {{--@for($i = 1; $i <= 10; $i++)
+        <p>Conteo: {{ $i }}</p>
+    @endfor--}}
+
+    {{--while--}}
+    {{--@php
+        $i = 1;
     @endphp
-@endwhile--}}
+    @while($i <= 10)
+        <p>{{$i}}</p>
 
-<script>
-    // Como pasar variables php a Js
-    let posts1 = {!! json_encode($posts) !!};
-    let posts2 = {{ Js::from($posts) }};
-    let posts3 = @json($posts);
+        @php
+        $i++;
+        @endphp
+    @endwhile--}}
 
-    console.log(posts3);
-</script>
-</body>
-</html>
+    <script>
+        // Como pasar variables php a Js
+        let posts1 = {!! json_encode($posts) !!};
+        let posts2 = {{ Js::from($posts) }};
+        let posts3 = @json($posts);
+
+        console.log(posts3);
+    </script>
+</x-layout>
