@@ -15,12 +15,12 @@
     @php
         $type = 'danger'
     @endphp
-    <x-alert :type="$type" id="prueba" class="mb-6">
+    <x-alert2 :type="$type" id="prueba" class="mb-6">
         <x-slot:title>
             Test Title!
         </x-slot:title>
         This is a test
-    </x-alert>
+    </x-alert2>
 
     <x-alert2></x-alert2>
 </div>
