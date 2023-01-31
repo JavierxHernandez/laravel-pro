@@ -34,7 +34,7 @@ class PostController extends Controller
 
         $categories = null;
 
-        return view('posts.index', compact('posts', 'categories'));
+        return view('posts.index-layout', compact('posts', 'categories'));
 
 //        return view('posts.index', [
 //            'pruebaIndex' => 'Este es un mensaje de prueba en controller index'
