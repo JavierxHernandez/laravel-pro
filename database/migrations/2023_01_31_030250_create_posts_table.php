@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,7 +27,7 @@ return new class extends Migration {
 //                ->on('users')
 //                ->onDelete('set null');
 
-            $table->foreignIdFor(\App\Models\User::class)
+            $table->foreignIdFor(User::class)
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
@@ -35,7 +37,7 @@ return new class extends Migration {
 //                ->references('id')
 //                ->on('categories')
 //                ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\Category::class)
+            $table->foreignIdFor(Category::class)
                 ->constrained()
                 ->cascadeOnDelete();
 
