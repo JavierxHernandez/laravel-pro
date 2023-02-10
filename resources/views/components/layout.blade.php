@@ -12,6 +12,16 @@
     <title>{{ $title ?? 'Laravel-pro' }}</title>
 </head>
 <body>
+<nav>
+    <ul>
+        <li>
+            <a href="{{ route('welcome') }}">Welcome</a>
+        </li>
+        <li>
+            <a href="{{ route('posts.index') }}">Posts</a>
+        </li>
+    </ul>
+</nav>
 {{ $slot }}
 </body>
 </html>

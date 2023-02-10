@@ -11,22 +11,27 @@ class PostController extends Controller
 
         $posts = [
             [
+                'id' => 1,
                 'title' => 'post 1',
                 'content' => 'content 1',
             ],
             [
+                'id' => 2,
                 'title' => 'post 2',
                 'content' => 'content 2',
             ],
             [
+                'id' => 3,
                 'title' => 'post 3',
                 'content' => 'content 3',
             ],
             [
+                'id' => 4,
                 'title' => 'post 4',
                 'content' => 'content 4',
             ],
             [
+                'id' => 5,
                 'title' => 'post 5',
                 'content' => 'content 5',
             ]
@@ -34,7 +39,7 @@ class PostController extends Controller
 
         $categories = null;
 
-        return view('posts.index-layout', compact('posts', 'categories'));
+        return view('posts.index', compact('posts', 'categories'));
 
 //        return view('posts.index', [
 //            'pruebaIndex' => 'Este es un mensaje de prueba en controller index'

@@ -89,6 +89,7 @@
     @endforeach--}}
 
     {{--forelse--}}
+    <a href="{{ route('posts.create') }}">Create New Posts</a>
     @forelse($posts as $post)
         <ul>
             <li @if($loop->first) style="color:green" @endif
@@ -96,11 +97,12 @@
                     'color-red' => $loop->iteration %2 == 0,
                     'color-blue' => $loop->iteration %2 != 0
                     ])>
-
-                {{ $post['title']
-                    ." - Indice: " . $loop->index
-                    ." - Iteracion: " .$loop->iteration
-                    ." - Faltan: ". $loop->remaining }}
+                <a href="{{ route('posts.show', $post["id"]) }}">
+                    {{ $post['title']
+                        ." - Indice: " . $loop->index
+                        ." - Iteracion: " .$loop->iteration
+                        ." - Faltan: ". $loop->remaining }}
+                </a>
             </li>
         </ul>
     @empty
