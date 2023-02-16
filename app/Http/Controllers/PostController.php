@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -51,8 +52,8 @@ class PostController extends Controller
         return view('posts.create', compact('prueba'));
     }
 
-    public function store(){
-        return "Aqui se procesará el post";
+    public function store(Request $request){
+        return "esta es tu variable: ".$request->get('title');
     }
 
     public function show($post){

@@ -27,19 +27,19 @@ return new class extends Migration {
 //                ->on('users')
 //                ->onDelete('set null');
 
-            $table->foreignIdFor(User::class)
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
-
-//            $table->unsignedBigInteger('category_id');
-//            $table->foreign('category_id')
-//                ->references('id')
-//                ->on('categories')
-//                ->onDelete('cascade');
-            $table->foreignIdFor(Category::class)
-                ->constrained()
-                ->cascadeOnDelete();
+//            $table->foreignIdFor(User::class)
+//                ->nullable()
+//                ->constrained()
+//                ->nullOnDelete();
+//
+////            $table->unsignedBigInteger('category_id');
+////            $table->foreign('category_id')
+////                ->references('id')
+////                ->on('categories')
+////                ->onDelete('cascade');
+//            $table->foreignIdFor(Category::class)
+//                ->constrained()
+//                ->cascadeOnDelete();
 
             $table->timestamps();
         });
