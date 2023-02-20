@@ -53,7 +53,43 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-        return "esta es tu variable: ".$request->get('title');
+//        $result = $request->all(); // Todo el formulario
+//        $result = $request->only(['title', 'content']); // Solo los campos especificados
+//        $result = $request->except(['title', 'content']); // Todos los campos excepto los especificados
+//        $result = $request->input('title'); // Solo el campo especificado
+//        $result = $request->title; // Solo el campo especificado
+//        $result = $request->has('title'); // Si existe el campo especificado
+//        $result = $request->filled('title'); // Si existe el campo especificado y no esta vacio
+//        $result = $request->method(); // Metodo de la peticion
+//        $result = $request->isMethod('post'); // Si el metodo de la peticion es el especificado
+//        $result = $request->isMethod('post', 'put'); // Si el metodo de la peticion es alguno de los especificados
+//        $result = $request->url(); // Url de la peticion
+//        $result = $request->fullUrl(); // Url completa de la peticion
+//        $result = $request->path(); // Path de la peticion
+//        $result = $request->query(); // Query de la peticion
+//        $result = $request->query('title'); // Query especifico de la peticion
+//        $result = $request->header(); // Header de la peticion
+//        $result = $request->header('host'); // Header especifico de la peticion
+//        $result = $request->cookie(); // Cookie de la peticion
+//        $result = $request->cookie('laravel_session'); // Cookie especifica de la peticion
+//        $result = $request->server(); // Server de la peticion
+//        $result = $request->server('SERVER_NAME'); // Server especifico de la peticion
+//        $result = $request->old(); // Old de la peticion
+//        $result = $request->old('title'); // Old especifico de la peticion
+//        $result = $request->flash(); // Flash de la peticion
+//        $result = $request->flashOnly(['title', 'content']); // Flash solo de los campos especificados
+//        $result = $request->flashExcept(['title', 'content']); // Flash de todos los campos excepto los especificados
+//        $result = $request->flush(); // Flush de la peticion
+//        $result = $request->allFiles(); // Todos los archivos de la peticion
+//        $result = $request->file('image'); // Archivo especifico de la peticion
+//        $result = $request->hasFile('image'); // Si existe el archivo especificado
+//        $result = $request->isValid(); // Si la peticion es valida
+//        $result = $request->validated(); // Validar la peticion
+//        $result = $request->validate([
+//            'title' => 'required',
+//            'content' => 'required'
+//        ]); // Validar la peticion
+        return $request->isMethod('post');
     }
 
     public function show($post){
