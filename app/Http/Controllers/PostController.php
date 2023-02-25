@@ -93,13 +93,7 @@ class PostController extends Controller
 //        ]); // Validar la peticion
 //        $request->isMethod('post');
 
-        $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->slug = $request->slug;
-        $post->user_id = 1;
-        $post->category_id = $request->category_id;
-        $post->save();
+        $post = Post::create($request->all());
 
         return redirect()->route('posts.index');
     }
