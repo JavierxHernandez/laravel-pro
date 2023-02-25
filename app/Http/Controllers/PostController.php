@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -10,36 +11,36 @@ class PostController extends Controller
     public function index(): string
     {
 
-        $posts = [
-            [
-                'id' => 1,
-                'title' => 'post 1',
-                'content' => 'content 1',
-            ],
-            [
-                'id' => 2,
-                'title' => 'post 2',
-                'content' => 'content 2',
-            ],
-            [
-                'id' => 3,
-                'title' => 'post 3',
-                'content' => 'content 3',
-            ],
-            [
-                'id' => 4,
-                'title' => 'post 4',
-                'content' => 'content 4',
-            ],
-            [
-                'id' => 5,
-                'title' => 'post 5',
-                'content' => 'content 5',
-            ]
-        ];
+//        $posts = [
+//            [
+//                'id' => 1,
+//                'title' => 'post 1',
+//                'content' => 'content 1',
+//            ],
+//            [
+//                'id' => 2,
+//                'title' => 'post 2',
+//                'content' => 'content 2',
+//            ],
+//            [
+//                'id' => 3,
+//                'title' => 'post 3',
+//                'content' => 'content 3',
+//            ],
+//            [
+//                'id' => 4,
+//                'title' => 'post 4',
+//                'content' => 'content 4',
+//            ],
+//            [
+//                'id' => 5,
+//                'title' => 'post 5',
+//                'content' => 'content 5',
+//            ]
+//        ];
 
         $categories = null;
-
+        $posts = Post::all();
         return view('posts.index', compact('posts', 'categories'));
 
 //        return view('posts.index', [
@@ -49,11 +50,12 @@ class PostController extends Controller
 
     public function create(){
         $prueba = "Test";
-        return view('posts.create', compact('prueba'));
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     public function store(Request $request){
-//        $result = $request->all(); // Todo el formulario
+//        $result = $request->all(); // El formulario
 //        $result = $request->only(['title', 'content']); // Solo los campos especificados
 //        $result = $request->except(['title', 'content']); // Todos los campos excepto los especificados
 //        $result = $request->input('title'); // Solo el campo especificado
@@ -89,7 +91,17 @@ class PostController extends Controller
 //            'title' => 'required',
 //            'content' => 'required'
 //        ]); // Validar la peticion
-        return $request->isMethod('post');
+//        $request->isMethod('post');
+
+        $post = new Post();
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->slug = $request->slug;
+        $post->user_id = 1;
+        $post->category_id = $request->category_id;
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 
     public function show($post){
