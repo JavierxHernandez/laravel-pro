@@ -89,26 +89,37 @@
     @endforeach--}}
 
     {{--forelse--}}
-    <a href="{{ route('posts.create') }}">Create New Posts</a>
-    @forelse($posts as $post)
+    <div class="container">
+        <a href="{{ route('posts.create') }}">Create New Posts</a>
+        @forelse($posts as $post)
+            <ul>
+                <li @if($loop->first) style="color:green" @endif
+                    @class([
+                        'color-red' => $loop->iteration %2 == 0,
+                        'color-blue' => $loop->iteration %2 != 0
+                        ])>
+                    <a href="{{ route('posts.show', $post["id"]) }}">
+                        {{ $post['title']
+                            ." - Indice: " . $loop->index
+                            ." - Iteracion: " .$loop->iteration
+                            ." - Faltan: ". $loop->remaining }}
+                    </a>
+                </li>
+            </ul>
+        @empty
+            <p>No hay nada en el array</p>
+        @endforelse
+        {{ $posts->links() }}
+    </div>
+
+    {{--continue--}}
+    {{--@foreach($posts as $post)
+        @continue($post['id'] == 2)
         <ul>
-            <li @if($loop->first) style="color:green" @endif
-                @class([
-                    'color-red' => $loop->iteration %2 == 0,
-                    'color-blue' => $loop->iteration %2 != 0
-                    ])>
-                <a href="{{ route('posts.show', $post["id"]) }}">
-                    {{ $post['title']
-                        ." - Indice: " . $loop->index
-                        ." - Iteracion: " .$loop->iteration
-                        ." - Faltan: ". $loop->remaining }}
-                </a>
+            <li>
+                {{ $post['title'] }}
             </li>
         </ul>
-    @empty
-        <p>No hay nada en el array</p>
-    @endforelse
-
     {{--for--}}
     {{--@for($i = 1; $i <= 10; $i++)
         <p>Conteo: {{ $i }}</p>

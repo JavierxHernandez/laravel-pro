@@ -40,7 +40,7 @@ class PostController extends Controller
 //        ];
 
         $categories = null;
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         return view('posts.index', compact('posts', 'categories'));
 
 //        return view('posts.index', [
