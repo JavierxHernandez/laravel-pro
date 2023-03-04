@@ -2,8 +2,10 @@
     <x-slot:title>
         Posts - Show
     </x-slot:title>
+    <div class="container mx-auto py-12">
+        <h1>{{ $post->title }}</h1>
+        <p>{{ $post->body }}</p>
 
-    <h1>Mostrar un post</h1>
-    <a href="{{ route('posts.edit', $post) }}">Edit</a>
-    {{ $post }}
+        <a class="btn btn-success" href="{{ route('posts.edit', $post) }}">Edit</a>
+    </div>
 </x-layout>
